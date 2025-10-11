@@ -1,0 +1,18 @@
+let val: unknown;
+console.log(val);
+val = true;
+console.log(val);
+val = 7;
+console.log(val);
+val = "Revature";
+console.log(val);
+val = [1, 2, 3, 4];
+console.log(val);
+val = { name: "Rachel" };
+console.log(val);
+val = Math.random();
+console.log(val);
+val = null;
+console.log(val);
+val = undefined;
+console.log(val);
