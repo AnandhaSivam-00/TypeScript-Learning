@@ -27,7 +27,7 @@ let orderId: number = 1;
 let orderQueue: Order[] = []
 // let orderQueue: Array<Order> = [] --> also valid one
 
-function getPizzaDetails(identifier: number | string) {
+function getPizzaDetails(identifier: number | string): Pizza | undefined {
   if(typeof identifier === "number") {
     return menuArray.find(pizza => pizza.id === identifier)
   }
@@ -39,11 +39,18 @@ function getPizzaDetails(identifier: number | string) {
   }
 }
 
-function addNewPizza(pizzaObj: Pizza) {
-  menuArray.push(pizzaObj)
+function addNewPizza(pizzaObj: Omit<Pizza, "id">): void {
+  const lastPizzaId: number | undefined = menuArray[menuArray.length - 1].id;
+  
+  if(lastPizzaId) {
+    menuArray.push({ id: lastPizzaId + 1, ...pizzaObj })
+    return
+  }
+
+  throw new Error("Invalid pizza object");
 }
 
-function placeOrder(pizzaName: string) {
+function placeOrder(pizzaName: string): Order | undefined {
   const pizza = menuArray.find(pizza => pizza.name === pizzaName);
   if(pizza) {
     cashInRegister += pizza.price;
@@ -60,7 +67,7 @@ function placeOrder(pizzaName: string) {
   return
 }
 
-function completeOrder(orderId: number) {
+function completeOrder(orderId: number): Order | undefined {
   let order = orderQueue.find(order => order.id === orderId);
   if(order) {
     order.status = "completed"
@@ -70,9 +77,9 @@ function completeOrder(orderId: number) {
   return
 }
 
-addNewPizza({ id: 5, name: "Veggie", price: 12 })
-addNewPizza({ id: 6, name: "Meat Lovers", price: 16 })
-addNewPizza({ id: 7, name: "Supreme", price: 14 })
+addNewPizza({ name: "Veggie", price: 12 })
+addNewPizza({ name: "Meat Lovers", price: 16 })
+addNewPizza({ name: "Supreme", price: 14 })
 
 placeOrder("Margherita")
 placeOrder("Pepperoni")
