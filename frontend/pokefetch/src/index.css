@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+
+  --color-background: #262624;
+  --color-foreground: #faf9f5;
+
+  --color-black: #141413;
+  --color-black-background: #000000;
+  --color-black-accent-1: #c2c0b6;
+  --color-black-accent-2: #b3b1a8;
+  --color-white: var(--color-foreground);
+
+  --color-primary: #c6613f;
+  --color-primary-accent-1: #fe8181;
+  --color-secondary: #5c83a9;
+
+  --color-gray-1: #30302e;
+  --color-gray-2: #65645f;
+  --color-gray-3: #5c5b57;
+  --color-gray-4: #f0eee6;
+
+  --font-body-size: var(--font-size-2);
+  --font-size-11: 3.5rem;
+  --font-size-10: 3rem;
+  --font-size-8: 2.25rem;
+  --base-font-size: 1rem;
+  --base-font-size-small: .938rem;
+  --font-size-1: .938rem;
+  --font-size-2: 1rem;
+  --font-size-3: 1.125rem;
+  --font-size-4: 1.25rem;
+  --font-size-5: 1.375rem;
+  --font-size-6: 1.75rem;
+  --font-size-7: 2rem;
+  --font-size-9: 2.5rem;
+  /* --font-size-12: 5rem; */
+}
+
+* {
+  /* margin: 0;
+  padding: 0; */
+  box-sizing: border-box;
+  font-family: "Space Grotesk", system-ui;
+}
