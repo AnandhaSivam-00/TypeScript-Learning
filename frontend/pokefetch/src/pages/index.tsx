@@ -48,7 +48,7 @@ const Home = (): JSX.Element => {
               alt='PokéFetch Logo'
               className='w-auto h-15 sm:h-9 md:sm-11 object-contain'
             />
-            <h1 className='font-normal! text-black-accent-1! mb-0!'>Good {greetingMessage}, 
+            <h1 className='font-normal! text-black-accent-1! mb-0! text-center'>Good {greetingMessage}, 
               <span className='text-primary'> bro</span>
             </h1>
           </section>
