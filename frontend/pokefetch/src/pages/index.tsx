@@ -63,9 +63,9 @@ const Home = (): JSX.Element => {
         <div className='w-full relative bg-transparant z-1'>
           <h5 className='font-semibold!'>BY LITTLE THINKER</h5>
           
-          <div className='w-full flex flex-col sm:flex-row justify-start sm:justify-between items-start gap-2'>
-            <span className='text-xs text-gray-4'>@{new Date().getFullYear()}</span>
-            <a href="" target='_blank' className='text-xs text-gray-4 underline hover:text-black-accent-2'>github.com/AnandhaSivam-00</a>
+          <div className='w-full flex flex-col sm:flex-row justify-start sm:justify-between items-start gap-2 [&>span,a]:text-xs [&>span,a]:text-gray-4'>
+            <span>@{new Date().getFullYear()}</span>
+            <a href="" target='_blank' className='underline hover:text-black-accent-2'>github.com/AnandhaSivam-00</a>
           </div> 
           
           <a href='https://pokeapi.co/' target='_blank' className='w-full text-[0.5rem] text-black-accent-1 underline hover:text-black-accent-2 mt-1'>Credits: PokéAPI</a>
