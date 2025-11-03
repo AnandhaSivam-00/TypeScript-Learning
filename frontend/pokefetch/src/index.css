@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @theme {
   --breakpoint-xs: 320px;
   --breakpoint-sm: 480px;
@@ -49,8 +45,6 @@
 }
 
 * {
-  /* margin: 0;
-  padding: 0; */
   box-sizing: border-box;
   font-family: "Space Grotesk", system-ui;
 }
