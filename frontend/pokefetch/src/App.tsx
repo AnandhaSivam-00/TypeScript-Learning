@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import {Suspense, type JSX} from 'react'
 
 import Home from './pages/index'
+import Main from './pages/Main'
 import LoadingScreen from './components/LoadingScreen'
 import PageNotFound from './components/PageNotFound'
 
@@ -13,7 +14,7 @@ function App(): JSX.Element {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />}>
-            <Route path='poke-search' element={<h1>Search</h1>} />
+            <Route path='poke-search' element={<Main />} />
           </Route>  
           <Route path='*' element={<PageNotFound />} />
         </Routes>

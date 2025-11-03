@@ -1,9 +1,10 @@
-import {useState, type JSX} from 'react'
+import {useContext, useState, type JSX} from 'react'
 
 import { SearchIcon } from '../assets/Icons'
 
 const SearchSection = (): JSX.Element => {
   const [searchQueryString, setSearchQueryString] = useState<string>('');
+  const pokemonNames = useContext(PokemonNamesContext);
   
   return (
     <section className='w-full h-auto mb-5 flex flex-col justify-center items-center'>

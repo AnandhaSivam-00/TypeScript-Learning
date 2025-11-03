@@ -1,12 +1,13 @@
-import {useEffect, useState, type JSX} from 'react'
+import { useEffect, useState, type JSX } from 'react'
 import { Outlet, useLocation } from 'react-router'
 
-import Main from './Main';
+import PokemonNamesContextProvider from '../utils/PokemonNamesContextProvider';
 
 import { getCurrentTimePeriod } from '../utils/helperFunctions';
 
 import PokeFetchLogoOriginal from '../assets/pokefetch-icon-original.png';
 import PokeFetchLogo from '../assets/pokefetch-icon-v1.svg';
+import SearchSection from '../components/SearchSection';
 // import PokeFetchLogo from '../assets/pokefetch-icon-v2.svg';
 // import PokeFetchLogo from '../assets/pokefetch-icon-v3.svg';
 
@@ -54,10 +55,14 @@ const Home = (): JSX.Element => {
           </section>
         )
       }
-      
-      <Main />
-      
-      <Outlet />
+
+      <PokemonNamesContextProvider>
+        <section className='w-full h-auto px-3 py-2'>
+          <SearchSection />
+        </section>
+
+        <Outlet />
+      </PokemonNamesContextProvider>
       
       <footer className='bg-black-background w-full h-auto absolute bottom-0 px-3 py-2 pt-4 overflow-hidden'>
         <div className='w-full relative bg-transparant z-1'>
