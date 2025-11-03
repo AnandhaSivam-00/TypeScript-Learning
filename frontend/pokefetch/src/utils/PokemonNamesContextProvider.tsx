@@ -26,9 +26,9 @@ const PokeNamesContextProvider = ({ children }: { children: JSX.Element[] }) => 
   }, [])
   
   return (
-    <PokeNamesContext.Provider value={pokemonNamesData}>
+    <PokeNamesContext value={pokemonNamesData}>
       {children}
-    </PokeNamesContext.Provider>
+    </PokeNamesContext>
   )
 }
 
