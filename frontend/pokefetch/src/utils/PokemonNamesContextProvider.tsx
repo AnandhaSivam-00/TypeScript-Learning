@@ -16,9 +16,9 @@ const PokeNamesContextProvider = ({ children }: { children: JSX.Element[] }) => 
 
   useEffect(() => {
     const fetchPokemonNames = async () => {
-      if(!pokemonNamesData) {
-        const pokemonNames: PokeNamesDataType = await getAllPokemonNames();
-        setPokemonNamesData(pokemonNames);
+      if(pokemonNamesData) {
+        // const pokemonNames: PokeNamesDataType = await getAllPokemonNames();
+        // setPokemonNamesData(pokemonNames);
       }
     };
     
