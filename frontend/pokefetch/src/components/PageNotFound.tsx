@@ -2,7 +2,7 @@ import type {JSX} from 'react'
 
 const PageNotFound = (): JSX.Element => {
   const handleGoBack = (): void => {
-    window.history.back();
+    globalThis.history.back();
   }
   
   return (
@@ -13,10 +13,7 @@ const PageNotFound = (): JSX.Element => {
         className='w-[6rem] bg-primary hover:bg-primary/80 py-2 px-3 rounded-lg hover:shadow-lg mt-5 relative group'
         onClick={handleGoBack}
       >
-        <span className='absolute left-0 top-0 flex items-center justify-center w-10 h-full group-hover:-translate-x-2 transition-transform duration-300'>
-          &lt;
-        </span>
-        Back
+        <span className='absolute left-0 top-0 flex items-center justify-center w-10 h-full group-hover:-translate-x-2 transition-transform duration-300'>&lt;</span>Back
       </button>  
     </section>
   )
