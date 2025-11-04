@@ -30,6 +30,7 @@ const Home = (): JSX.Element => {
   
   return (
     <main className='w-full min-h-screen flex flex-col justify-center items-center relative'>
+      
       {searchFocus ? (
           <header className='w-full h-auto fixed top-0 px-3 py-2 bg-black/70 backdrop-blur-sm flex flex-row justify-start items-center gap-x-2 md:gap-x-4 shadow-xl'>
             <img
@@ -41,30 +42,32 @@ const Home = (): JSX.Element => {
           </header>
         ) : null
       }
-      
-      {searchFocus ? null : (
-          <section className='w-full h-auto flex flex-col sm:flex-row justify-center items-center gap-3 my-5'>
-            <img 
-              src={PokeFetchLogo}
-              alt='PokéFetch Logo'
-              className='w-auto h-15 sm:h-9 md:sm-11 object-contain'
-            />
-            <h1 className='font-normal! text-black-accent-1! mb-0! text-center'>Good {greetingMessage}, 
-              <span className='text-primary'> bro</span>
-            </h1>
+
+      <div className='w-full h-screen flex flex-col justify-center items-center'>
+        {searchFocus ? null : (
+            <section className='w-full h-auto flex flex-col sm:flex-row justify-center items-center gap-3 my-5'>
+              <img 
+                src={PokeFetchLogo}
+                alt='PokéFetch Logo'
+                className='w-auto h-15 sm:h-9 md:sm-11 object-contain'
+              />
+              <h1 className='font-normal! text-black-accent-1! mb-0! text-center'>Good {greetingMessage}, 
+                <span className='text-primary'> bro</span>
+              </h1>
+            </section>
+          )
+        }
+
+        <PokemonNamesContextProvider>
+          <section className='w-full h-auto px-3 py-2'>
+            <SearchSection />
           </section>
-        )
-      }
 
-      <PokemonNamesContextProvider>
-        <section className='w-full h-auto px-3 py-2'>
-          <SearchSection />
-        </section>
-
-        <Outlet />
-      </PokemonNamesContextProvider>
+          <Outlet />
+        </PokemonNamesContextProvider>
+      </div>
       
-      <footer className='bg-black-background w-full h-auto absolute bottom-0 px-3 py-2 pt-4 overflow-hidden'>
+      <footer className='bg-black-background w-full h-auto px-3 py-2 pt-4 overflow-hidden'>
         <div className='w-full relative bg-transparant z-1'>
           <h5 className='font-semibold!'>BY LITTLE THINKER</h5>
           

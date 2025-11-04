@@ -15,7 +15,7 @@ const PokeNamesContextProvider = ({ children }: { children: JSX.Element[] }) => 
   const [pokemonNamesData, setPokemonNamesData] = useState<Partial<PokeNamesDataType>>({});
 
   useEffect(() => {
-    const fetchPokemonNames = async (): Promise<void> => {
+    (async () => {
       if(pokemonNamesData) {
         const pokemonNames: Awaited<Promise<PokeNamesDataType | undefined>> = await getAllPokemonNames();
 
@@ -23,9 +23,7 @@ const PokeNamesContextProvider = ({ children }: { children: JSX.Element[] }) => 
           setPokemonNamesData(pokemonNames);
         }
       }
-    };
-    
-    fetchPokemonNames();
+    })();
   }, [])
   
   return (
