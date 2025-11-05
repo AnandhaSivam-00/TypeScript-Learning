@@ -90,7 +90,7 @@ p {
     font-size: var(--font-size-5);
   }
   p {
-    font-size: var(--font-size-2);
+    font-size: var(--font-size-1);
     line-height: 1.65;
   }
 }
@@ -146,7 +146,7 @@ p {
     font-size: var(--font-size-2);
   }
   p {
-    font-size: var(--font-size-1);
+    font-size: 0.675rem;
     line-height: 1.6;
   }
 }
@@ -174,7 +174,7 @@ p {
     font-size: var(--font-size-1);
   }
   p {
-    font-size: 0.875rem;
+    font-size: 0.475rem;
     line-height: 1.6;
   }
 }
