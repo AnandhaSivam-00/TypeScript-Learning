@@ -1,5 +1,7 @@
 import {useEffect, useState, type JSX} from 'react';
 
+import { changeFirstLetterToUpperCase } from '../utils/helperFunctions';
+
 type ResultPillProps = {
   searchQueryString: string;
   pokemonNames: {
@@ -25,7 +27,7 @@ const ResultPill = ({
         .startsWith(searchQueryString.toLowerCase()))
       .sort((a, b) => a.name.localeCompare(b.name))
       .slice(0, 11)
-      .map((pokemon) => pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1));
+      .map((pokemon) => changeFirstLetterToUpperCase(pokemon.name));
 
     setFilteredPokemonNames(filteredNames);
   }, [searchQueryString])
