@@ -5,7 +5,8 @@ import type {
   PokeNamesDataType, 
   PokemonDataType, 
   SpeciesDataType,
-  PokemonDetailsType
+  PokemonDetailsType,
+  PokemonStatsType
 } from './types';
 
 
@@ -100,6 +101,11 @@ export const getPokemonDetails = async (name: string): Promise<PokemonDetailsTyp
       throw new Error(speciesData.message);
     }
 
+    console.log({
+      ...pokemonData,
+      ...speciesData
+    })
+
     return {
       ...pokemonData,
       ...speciesData
@@ -122,7 +128,12 @@ export const getPokemonData = async (name: string): Promise<PokemonDataType | Er
   try {
     const response: any = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
 
-    const abilities: string[] = response.data.abilities.map((ability: any) => ability.name);
+    const abilities: string[] = response.data.abilities.map((item: any) => item.ability.name);
+    const stats: PokemonStatsType = response.data.stats
+      .reduce((entry: any, item: any) => {
+        entry[item.stat.name] = item.base_stat;
+        return entry;
+      }, {} as PokemonStatsType);
 
     const pokemonData: PokemonDataType = {
       id: response.data.id,
@@ -135,27 +146,35 @@ export const getPokemonData = async (name: string): Promise<PokemonDataType | Er
         img: response.data.sprites.front_default,
         svg: response.data.sprites.front_shiny
       },
-      type: response.data.types[0].type.name,
+      type: response.data.types[0].type.name, // need to be change like the abilities
       species: response.data.species.name,
       abilities,
+      stats
     };
 
-    const pokemonData: PokemonDataType = {
-      id: 25,
-      name: "pikachu",
-      height: 4,
-      weight: 60,
-      order: 35,
-      base_experience: 112,
-      sprites: {
-        img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-        svg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png",
-      },
-      type: "electric",
-      species: "pikachu",
-      abilities: ["static", "lightning-rod"],
-    };
-
+    // const pokemonData: PokemonDataType = {
+    //   id: 25,
+    //   name: "pikachu",
+    //   height: 4,
+    //   weight: 60,
+    //   order: 35,
+    //   base_experience: 112,
+    //   sprites: {
+    //     img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    //     svg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png",
+    //   },
+    //   type: "fire",
+    //   species: "pikachu",
+    //   abilities: ["static", "lightning-rod"],
+    //   stats: {
+    //     hp: 35,
+    //     attack: 55,
+    //     defense: 40,
+    //     special_attack: 50,
+    //     special_defense: 90,
+    //     speed: 90,
+    //   }
+    // };
     
     return pokemonData;
   }
@@ -173,8 +192,6 @@ export const getPokemonData = async (name: string): Promise<PokemonDataType | Er
 }
 
 export const getPokemonSpeciesData = async (name: string): Promise<SpeciesDataType | ErrorType> => {
-  console.log(name);
-  
   try {
     const response: any = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
 
@@ -183,10 +200,15 @@ export const getPokemonSpeciesData = async (name: string): Promise<SpeciesDataTy
       .slice(0, 1)
       .map((entry: any) => entry.flavor_text)
 
+    const category: string = response.data.genera
+      .filter((entry: any) => entry.language.name === "en")
+      .map((entry: any) => entry.genus.replace(" Pokémon", ""))[0]
+
     const speciesData: SpeciesDataType = {
       about,
       color: response.data.color.name,
       gender_rate: response.data.gender_rate,
+      category,
       is_legendary: response.data.is_legendary,
       is_mythical: response.data.is_mythical
     }
@@ -196,10 +218,10 @@ export const getPokemonSpeciesData = async (name: string): Promise<SpeciesDataTy
     //     "Pikachu that can generate powerful electricity have cheek sacs that are extra soft and super stretchy.",
     //   color: "yellow",
     //   gender_rate: 4, // (♀:4 ♂:4) means 50/50 gender ratio
+    //   category: "lizard",
     //   is_legendary: false,
     //   is_mythical: false,
     // };
-
 
     return speciesData;
   }
