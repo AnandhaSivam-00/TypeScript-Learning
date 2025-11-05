@@ -3,10 +3,20 @@ import { useSearchParams } from 'react-router-dom';
 
 import ErrorBlock from './ErrorBlock';
 import LoadingState from './LoadingState';
+import RoundedPill from './RoundedPill';
+import CardTail from './CardTail';
+import GenderRenderer from './GenderRenderer';
+import StatsTable from './StatsTable';
 
 import { getPokemonDetails } from '../utils/dataFetchingAndFormatting';
+import { changeFirstLetterToUpperCase, removeHypens } from '../utils/helperFunctions';
 
-import { type ErrorType, type PokemonDetailsType } from '../utils/types';
+import { 
+  type ErrorType, 
+  type PokemonDetailsType, 
+  type PokemonStatsType 
+} from '../utils/types';
+import { backdropColors } from '../utils/colors';
 
 const OutputSection = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -15,7 +25,6 @@ const OutputSection = (): JSX.Element => {
 
   const [searchParams] = useSearchParams();
   const pokemonName = searchParams.get('name');
-
 
   useEffect(() => {
     if(!pokemonName) {
@@ -45,19 +54,97 @@ const OutputSection = (): JSX.Element => {
   }, [pokemonName]);
 
   return (
-    <section className='w-full h-auto'>
+    <section className='w-full h-auto px-2'>
       {isLoading && (
         <LoadingState />
       )}
 
       {errorMessage && (
         <div className='w-full h-auto flex justify-center items-center px-2'>
-          <ErrorBlock message='This is an error message. jkvb;ovfjbgslcnergbcxvnergvsdifvblerigndfnberkdfvb;df' />
+          <ErrorBlock message={errorMessage} />
         </div>
       )}
 
       {pokemonDetails && (
-        <p>{pokemonDetails.name}</p>
+        <div className='mx-auto w-full lg:w-[55rem] xl:w-[68rem] h-5xl grid grid-cols-12 border-1 border-gray-5 rounded-md p-2 md:p-4 shadow-xl mb-5'>
+          <div className='col-span-12 md:col-span-5 flex flex-col justify-start items-start'>
+            <div className='flex flex-row justify-start items-start gap-x-2'>
+              <div className='flex flex-col justify-center items-start gap-y-1'>
+                <h1 className='font-semibold!'>{changeFirstLetterToUpperCase(removeHypens(pokemonDetails?.name))}</h1>
+                <RoundedPill 
+                  text={changeFirstLetterToUpperCase(pokemonDetails.type)}
+                  color={pokemonDetails.type}
+                />
+              </div>
+              <span className='text-xs text-gray-2'>#{pokemonDetails?.order}</span>
+            </div>
+            <img 
+              src={pokemonDetails.sprites.img} 
+              alt={pokemonDetails.name} 
+              // className="w-68 h-68 object-contains transform-3d transition-colors duration-800 ease-in"
+              className={`w-68 h-68 object-contains ${pokemonDetails?.color ? `drop-shadow-[0_0_1rem_${backdropColors[pokemonDetails?.color as keyof typeof backdropColors]}]` : 'drop-shadow-none'}
+                transition-all duration-300 ease-in`}
+            />
+          </div>
+
+          <div className='col-span-12 md:col-span-7 flex flex-col justify-start items-start gap-y-10 md:gap-y-7'>
+            <div className='w-auto h-auto'>
+              <h5 className='font-semibold!'>Story</h5>
+              <p className='text-wrap mb-0!'>{pokemonDetails.about}</p>
+            </div>
+
+            <div className='w-auto h-auto'>
+              <h5 className='font-semibold!'>Metrics</h5>
+              <div className='w-auto h-auto flex flex-row flex-wrap justify-start items-center gap-x-2 gap-y-2'>
+                <CardTail>
+                  <h6>Height</h6>
+                  <p>{pokemonDetails.height / 10}m</p>
+                </CardTail>
+                <CardTail>
+                  <h6>Weight</h6>
+                  <p>{pokemonDetails.weight / 10}kg</p> 
+                </CardTail>
+                <CardTail>
+                  <h6>Gender</h6>
+                  <GenderRenderer genderRate={pokemonDetails.gender_rate} />
+                </CardTail>
+                <CardTail>
+                  <h6>Category</h6>
+                  <p>{changeFirstLetterToUpperCase(pokemonDetails.category)}</p> 
+                </CardTail>
+                {/* <CardTail>
+                  <h6 className='text-sm! mb-0!'>Abilities</h6>
+                  <p className='mb-0! text-xl!'>{pokemonDetails?.abilities?.join(', ')}</p>
+                </CardTail> */}
+              </div>
+            </div>
+
+            <div className="w-auto h-auto">
+              <h5 className='font-semibold!'>Abilities</h5>
+              <div className="flex flex-row justify-start items-center gap-3">
+                {pokemonDetails?.abilities.map((item, index) => {
+                  return (
+                    <span 
+                      key={index}
+                      className="bg-black px-3 py-1 rounded-md text-xs md:text-sm"
+                    >
+                      {changeFirstLetterToUpperCase(removeHypens(item))}
+                    </span>
+                  )
+                })}
+              </div>
+            </div>
+
+            <div className="w-full h-auto">
+              <h5 className='font-semibold!'>Stats</h5>
+              <div className="w-full">
+                {pokemonDetails.stats && (
+                  <StatsTable statsData={pokemonDetails.stats}/>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </section>
   )

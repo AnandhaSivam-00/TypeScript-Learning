@@ -32,7 +32,7 @@ const Home = (): JSX.Element => {
     <main className='w-full min-h-screen flex flex-col justify-center items-center relative'>
       
       {searchFocus ? (
-          <header className='w-full h-auto fixed top-0 px-3 py-2 bg-black/70 backdrop-blur-sm flex flex-row justify-start items-center gap-x-2 md:gap-x-4 shadow-xl'>
+          <header className='z-10 w-full h-auto fixed top-0 px-3 py-2 bg-black/70 backdrop-blur-sm flex flex-row justify-start items-center gap-x-2 md:gap-x-4 shadow-xl'>
             <img
               src={PokeFetchLogo}
               alt='PokéFetch Logo'
@@ -43,7 +43,7 @@ const Home = (): JSX.Element => {
         ) : null
       }
 
-      <div className='w-full h-screen flex flex-col justify-center items-center'>
+      <div className='w-full min-h-screen flex flex-col justify-center items-center'>
         {searchFocus ? null : (
             <section className='w-full h-auto flex flex-col sm:flex-row justify-center items-center gap-3 my-5'>
               <img 
@@ -73,7 +73,7 @@ const Home = (): JSX.Element => {
           
           <div className='w-full flex flex-col sm:flex-row justify-start sm:justify-between items-start gap-2 [&>span,a]:text-xs [&>span,a]:text-gray-4'>
             <span>@{new Date().getFullYear()}</span>
-            <a href="" target='_blank' className='underline hover:text-black-accent-2'>github.com/AnandhaSivam-00</a>
+            <a href="https://github.com/davidhckh/pokedex/blob/main/javascript/list.js" target='_blank' className='underline hover:text-black-accent-2'>github.com/AnandhaSivam-00</a>
           </div> 
           
           <a href='https://pokeapi.co/' target='_blank' className='w-full text-[0.5rem] text-black-accent-1 underline hover:text-black-accent-2 mt-1'>Credits: PokéAPI</a>
