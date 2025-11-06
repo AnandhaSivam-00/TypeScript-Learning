@@ -76,8 +76,9 @@ const OutputSection = (): JSX.Element => {
                   {pokemonDetails.type.map((item, index) => {
                       return (
                         <RoundedPill 
+                          key={index}
                           text={changeFirstLetterToUpperCase(item)}
-                          color={item as string}
+                          color={item as PokeTypesColorType}
                         />
                       )
                   })}

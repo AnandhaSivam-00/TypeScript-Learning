@@ -1,19 +1,16 @@
 import type {JSX} from 'react'
 
 import type { PokeTypesColorType } from '../utils/types';
+import { pokeTypeBgColors } from '../utils/colors';
 
 type RoundedPillProps = {
-    text: string,
-    color: string
+    text: string;
+    color: PokeTypesColorType;
 }
-
 
 const RoundedPill = ({ text, color }: RoundedPillProps): JSX.Element => {
     return (
-        <div 
-            className="inline-block w-auto h-auto px-3 rounded-full shadow-sm"
-            style={{backgroundColor: `var(--color-${color})`}}
-        >
+        <div className={`inline-block w-auto h-auto px-3 rounded-full shadow-sm ${pokeTypeBgColors[color]}`}>
             <span className='text-[0.7rem] m-0 font-bold'>{text}</span>
         </div>
     )
