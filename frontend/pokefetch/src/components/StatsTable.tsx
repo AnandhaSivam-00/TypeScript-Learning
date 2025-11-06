@@ -2,9 +2,11 @@ import React, { useState, useEffect, type JSX } from 'react'
 
 import ProgressBar from './ProgressBar';
 
+import { getRoundedValue } from '../utils/helperFunctions';
+
 import type { PokemonStatsType } from '../utils/types';
 
-const StatsTable = ({statsData}: { statsData: PokemonStatsType }): JSX.Element => {
+const StatsTable = ({statsData, color}: { statsData: PokemonStatsType, color: string }): JSX.Element => {
     const [marks, setMarks] = useState<number[]>([]);
 
     useEffect(() => {
@@ -34,8 +36,8 @@ const StatsTable = ({statsData}: { statsData: PokemonStatsType }): JSX.Element =
                             </div>
                             <div className='col-span-8 my-auto'>
                                 <ProgressBar 
-                                    mark={marks[index]}
-                                    color={"yellow"}
+                                    mark={getRoundedValue(marks[index])}
+                                    color={color}
                                 />
                             </div>
                         </div>

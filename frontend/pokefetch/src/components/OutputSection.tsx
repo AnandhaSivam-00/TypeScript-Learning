@@ -72,7 +72,7 @@ const OutputSection = (): JSX.Element => {
               <div className='flex flex-col justify-center items-start gap-y-1'>
                 <div className='flex flex-row justify-start items-start gap-x-4'>
                   <h1 className='font-semibold!'>{changeFirstLetterToUpperCase(removeHypens(pokemonDetails?.name))}</h1>
-                  <span className='text-xs text-gray-2 absolute top-0 left'>#{pokemonDetails?.order}</span>
+                  <span className='text-xs text-gray-2'>#{pokemonDetails?.order}</span>
                 </div>
                 <div className='flex flex-row flex-wrap justify-start items-center gap-2'>
                   {pokemonDetails.type.map((item, index) => {
@@ -86,24 +86,31 @@ const OutputSection = (): JSX.Element => {
                   })}
                 </div>
               </div>
-            <img 
-              src={pokemonDetails.sprites.img} 
-              alt={pokemonDetails.name} 
-              // className="w-68 h-68 object-contains transform-3d transition-colors duration-800 ease-in"
-              className={`w-68 h-68 object-contains ${pokemonDetails?.color ? `drop-shadow-[0_0_1rem_${backdropColors[pokemonDetails?.color as keyof typeof backdropColors]}]` : 'drop-shadow-none'}
-                transition-all duration-300 ease-in`}
-            />
+              <div className='relative py-5 self-center'>
+                <img 
+                  src={pokemonDetails.sprites.gif} 
+                  alt={pokemonDetails.name} 
+                  // className="w-68 h-68 object-contains transform-3d transition-colors duration-800 ease-in"
+                  className="w-30 h-30 object-contains"
+                  loading='eager'
+                />
+                <div 
+                  className='absolute top-1/2 right-[30%] w-30 h-25'
+                >
+                  <div className='w-full h-full bg-white/0 hover:bg-white/50 blur-2xl transform-3d skew-y-10 -skew-x-3 -translate-y-5 -rotate-20 rounded-[3rem]transition-all duration-500 ease-in' />
+                </div>
+              </div>
           </div>
 
           <div className='col-span-12 md:col-span-7 flex flex-col justify-start items-start gap-y-10 md:gap-y-7'>
             <div className='w-auto h-auto'>
               <h5 className='font-semibold!'>Story</h5>
-              <p className='text-wrap mb-0!'>{pokemonDetails.about}</p>
+              <p className='text-wrap mb-0! text-sm! md:text-xl!'>{pokemonDetails.about}</p>
             </div>
 
-            <div className='w-auto h-auto'>
+            <div className='w-full h-auto'>
               <h5 className='font-semibold!'>Metrics</h5>
-              <div className='w-auto h-auto flex flex-row flex-wrap justify-start items-center gap-x-2 gap-y-2'>
+              <div className='w-auto h-auto flex flex-row flex-wrap justify-evenly sm:justify-between md:justify-start items-center gap-x-2 gap-y-2'>
                 <CardTail>
                   <h6>Height</h6>
                   <p>{pokemonDetails.height / 10}m</p>
@@ -147,7 +154,7 @@ const OutputSection = (): JSX.Element => {
               <h5 className='font-semibold!'>Stats</h5>
               <div className="w-full">
                 {pokemonDetails.stats && (
-                  <StatsTable statsData={pokemonDetails.stats}/>
+                  <StatsTable statsData={pokemonDetails.stats} color={pokemonDetails.color}/>
                 )}
               </div>
             </div>

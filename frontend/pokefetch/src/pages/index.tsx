@@ -59,7 +59,7 @@ const Home = (): JSX.Element => {
         }
 
         <PokemonNamesContextProvider>
-          <section className='w-full h-auto px-3 py-2'>
+          <section className={`w-full h-auto px-3 py-2 ${searchFocus ? 'mt-20' : ''}`}>
             <SearchSection />
           </section>
 

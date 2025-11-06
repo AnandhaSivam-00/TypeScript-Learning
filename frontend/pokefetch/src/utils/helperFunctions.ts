@@ -30,3 +30,11 @@ export const removeHypens = (str: string | undefined): string => {
   
   return str.replace("-", " ");
 }
+
+export const getRandomNumber = (maxNum: number): number => {
+  return Math.floor(Math.random() * (maxNum + 1));
+}
+
+export const getRoundedValue = (value: number): number => {
+  return Math.round((value / 170) * 100);
+}

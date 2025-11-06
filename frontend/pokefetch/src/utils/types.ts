@@ -28,8 +28,9 @@ export type PokemonDataType = {
   order: number;
   base_experience: number;
   sprites: {
-    img: string;
-    svg: string;
+    img: string | undefined;
+    svg: string | undefined;
+    gif: string | undefined;
   },
   type: string[];
   abilities: string[];
