@@ -31,7 +31,7 @@ export type PokemonDataType = {
     img: string;
     svg: string;
   },
-  type: string;
+  type: string[];
   abilities: string[];
   species: string;
   stats: PokemonStatsType;

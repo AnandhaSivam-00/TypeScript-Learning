@@ -9,6 +9,8 @@ import type {
   PokemonStatsType
 } from './types';
 
+import { changeFirstLetterToUpperCase } from './helperFunctions'
+
 
 const errorData: ErrorType = {
   name: "Unknown",
@@ -17,62 +19,62 @@ const errorData: ErrorType = {
 
 export const getAllPokemonNames = async (): Promise<PokeNamesDataType | undefined> => {
   try {
-    const response: any = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
-    const data: PokeNamesDataType = {
-      count: response.data.count,
-      results: response.data.results
-    }
+    // const response: any = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
+    // const data: PokeNamesDataType = {
+    //   count: response.data.count,
+    //   results: response.data.results
+    // }
 
     // Dummy data
-  //   const data: PokeNamesDataType = {
-  //     "count": 1328,
-  //     "results": [
-  //       {
-  //         "name": "bulbasaur",
-  //         "url": "https://pokeapi.co/api/v2/pokemon/1/"
-  //       },
-  //       {
-  //         "name": "ivysaur",
-  //         "url": "https://pokeapi.co/api/v2/pokemon/2/"
-  //       },
-  //       {
-  //         "name": "venusaur",
-  //         "url": "https://pokeapi.co/api/v2/pokemon/3/"
-  //       },
-  //       {
-  //         "name": "charmander",
-  //         "url": "https://pokeapi.co/api/v2/pokemon/4/"
-  //       },
-  //       {
-  //         "name": "charmeleon",
-  //         "url": "https://pokeapi.co/api/v2/pokemon/5/"
-  //       },
-  //       {
-  //         "name": "charizard",
-  //         "url": "https://pokeapi.co/api/v2/pokemon/6/"
-  //       },
-  //       {
-  //         "name": "squirtle",
-  //         "url": "https://pokeapi.co/api/v2/pokemon/7/"
-  //       },
-  //       {
-  //         "name": "wartortle",
-  //         "url": "https://pokeapi.co/api/v2/pokemon/8/"
-  //       },
-  //       {
-  //         "name": "blastoise",
-  //         "url": "https://pokeapi.co/api/v2/pokemon/9/"
-  //       },
-  //       {
-  //         "name": "caterpie",
-  //         "url": "https://pokeapi.co/api/v2/pokemon/10/"
-  //       },
-  //       {
-  //         "name": "metapod",
-  //         "url": "https://pokeapi.co/api/v2/pokemon/11/"
-  //       }
-  //     ]
-  // }
+    const data: PokeNamesDataType = {
+      "count": 1328,
+      "results": [
+        {
+          "name": "bulbasaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/1/"
+        },
+        {
+          "name": "ivysaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/2/"
+        },
+        {
+          "name": "venusaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/3/"
+        },
+        {
+          "name": "charmander",
+          "url": "https://pokeapi.co/api/v2/pokemon/4/"
+        },
+        {
+          "name": "charmeleon",
+          "url": "https://pokeapi.co/api/v2/pokemon/5/"
+        },
+        {
+          "name": "charizard",
+          "url": "https://pokeapi.co/api/v2/pokemon/6/"
+        },
+        {
+          "name": "squirtle",
+          "url": "https://pokeapi.co/api/v2/pokemon/7/"
+        },
+        {
+          "name": "wartortle",
+          "url": "https://pokeapi.co/api/v2/pokemon/8/"
+        },
+        {
+          "name": "blastoise",
+          "url": "https://pokeapi.co/api/v2/pokemon/9/"
+        },
+        {
+          "name": "caterpie",
+          "url": "https://pokeapi.co/api/v2/pokemon/10/"
+        },
+        {
+          "name": "metapod",
+          "url": "https://pokeapi.co/api/v2/pokemon/11/"
+        }
+      ]
+  }
 
   //   console.log(data);
 
@@ -126,55 +128,56 @@ export const getPokemonDetails = async (name: string): Promise<PokemonDetailsTyp
 
 export const getPokemonData = async (name: string): Promise<PokemonDataType | ErrorType> => {
   try {
-    const response: any = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    // const response: any = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
 
-    const abilities: string[] = response.data.abilities.map((item: any) => item.ability.name);
-    const stats: PokemonStatsType = response.data.stats
-      .reduce((entry: any, item: any) => {
-        entry[item.stat.name] = item.base_stat;
-        return entry;
-      }, {} as PokemonStatsType);
-
-    const pokemonData: PokemonDataType = {
-      id: response.data.id,
-      name: response.data.name,
-      height: response.data.height,
-      weight: response.data.weight,
-      order: response.data.order,
-      base_experience: response.data.base_experience,
-      sprites: {
-        img: response.data.sprites.front_default,
-        svg: response.data.sprites.front_shiny
-      },
-      type: response.data.types[0].type.name, // need to be change like the abilities
-      species: response.data.species.name,
-      abilities,
-      stats
-    };
+    // const abilities: string[] = response.data.abilities.map((item: any) => item.ability.name);
+    // const type: string[] = response.data.types.map((item: any) => item.type.name);
+    // const stats: PokemonStatsType = response.data.stats
+    //   .reduce((entry: any, item: any) => {
+    //     entry[item.stat.name] = item.base_stat;
+    //     return entry;
+    //   }, {} as PokemonStatsType);
 
     // const pokemonData: PokemonDataType = {
-    //   id: 25,
-    //   name: "pikachu",
-    //   height: 4,
-    //   weight: 60,
-    //   order: 35,
-    //   base_experience: 112,
+    //   id: response.data.id,
+    //   name: response.data.name,
+    //   height: response.data.height,
+    //   weight: response.data.weight,
+    //   order: response.data.order,
+    //   base_experience: response.data.base_experience,
     //   sprites: {
-    //     img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-    //     svg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png",
+    //     img: response.data.sprites.front_default,
+    //     svg: response.data.sprites.front_shiny
     //   },
-    //   type: "fire",
-    //   species: "pikachu",
-    //   abilities: ["static", "lightning-rod"],
-    //   stats: {
-    //     hp: 35,
-    //     attack: 55,
-    //     defense: 40,
-    //     special_attack: 50,
-    //     special_defense: 90,
-    //     speed: 90,
-    //   }
+    //   type: response.data.types[0].type.name, // need to be change like the abilities
+    //   species: response.data.species.name,
+    //   abilities,
+    //   stats
     // };
+
+    const pokemonData: PokemonDataType = {
+      id: 25,
+      name: "pikachu",
+      height: 4,
+      weight: 60,
+      order: 35,
+      base_experience: 112,
+      sprites: {
+        img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+        svg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png",
+      },
+      type: ["ice", "steel"],
+      species: "pikachu",
+      abilities: ["static", "lightning-rod"],
+      stats: {
+        hp: 35,
+        attack: 55,
+        defense: 40,
+        special_attack: 50,
+        special_defense: 90,
+        speed: 90,
+      }
+    };
     
     return pokemonData;
   }
@@ -193,35 +196,35 @@ export const getPokemonData = async (name: string): Promise<PokemonDataType | Er
 
 export const getPokemonSpeciesData = async (name: string): Promise<SpeciesDataType | ErrorType> => {
   try {
-    const response: any = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
+    // const response: any = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
 
-    const about: string = response.data.flavor_text_entries
-      .filter((entry: any) => entry.language.name === "en")
-      .slice(0, 1)
-      .map((entry: any) => entry.flavor_text)
+    // const about: string = response.data.flavor_text_entries
+    //   .filter((entry: any) => entry.language.name === "en")
+    //   .slice(0, 1)
+    //   .map((entry: any) => entry.flavor_text)
 
-    const category: string = response.data.genera
-      .filter((entry: any) => entry.language.name === "en")
-      .map((entry: any) => entry.genus.replace(" Pokémon", ""))[0]
-
-    const speciesData: SpeciesDataType = {
-      about,
-      color: response.data.color.name,
-      gender_rate: response.data.gender_rate,
-      category,
-      is_legendary: response.data.is_legendary,
-      is_mythical: response.data.is_mythical
-    }
+    // const category: string = response.data.genera
+    //   .filter((entry: any) => entry.language.name === "en")
+    //   .map((entry: any) => entry.genus.replace(" Pokémon", ""))[0]
 
     // const speciesData: SpeciesDataType = {
-    //   about:
-    //     "Pikachu that can generate powerful electricity have cheek sacs that are extra soft and super stretchy.",
-    //   color: "yellow",
-    //   gender_rate: 4, // (♀:4 ♂:4) means 50/50 gender ratio
-    //   category: "lizard",
-    //   is_legendary: false,
-    //   is_mythical: false,
-    // };
+    //   about,
+    //   color: response.data.color.name,
+    //   gender_rate: response.data.gender_rate,
+    //   category,
+    //   is_legendary: response.data.is_legendary,
+    //   is_mythical: response.data.is_mythical
+    // }
+
+    const speciesData: SpeciesDataType = {
+      about:
+        "Pikachu that can generate powerful electricity have cheek sacs that are extra soft and super stretchy.",
+      color: "yellow",
+      gender_rate: 4, // (♀:4 ♂:4) means 50/50 gender ratio
+      category: "lizard",
+      is_legendary: false,
+      is_mythical: false,
+    };
 
     return speciesData;
   }

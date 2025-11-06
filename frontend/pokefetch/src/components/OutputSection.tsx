@@ -14,7 +14,8 @@ import { changeFirstLetterToUpperCase, removeHypens } from '../utils/helperFunct
 import { 
   type ErrorType, 
   type PokemonDetailsType, 
-  type PokemonStatsType 
+  type PokemonStatsType,
+  type PokeTypesColorType
 } from '../utils/types';
 import { backdropColors } from '../utils/colors';
 
@@ -71,10 +72,16 @@ const OutputSection = (): JSX.Element => {
             <div className='flex flex-row justify-start items-start gap-x-2'>
               <div className='flex flex-col justify-center items-start gap-y-1'>
                 <h1 className='font-semibold!'>{changeFirstLetterToUpperCase(removeHypens(pokemonDetails?.name))}</h1>
-                <RoundedPill 
-                  text={changeFirstLetterToUpperCase(pokemonDetails.type)}
-                  color={pokemonDetails.type}
-                />
+                <div className='flex flex-row justify-start items-center gap-x-2'>
+                  {pokemonDetails.type.map((item, index) => {
+                      return (
+                        <RoundedPill 
+                          text={changeFirstLetterToUpperCase(item)}
+                          color={item as string}
+                        />
+                      )
+                  })}
+                </div>
               </div>
               <span className='text-xs text-gray-2'>#{pokemonDetails?.order}</span>
             </div>
