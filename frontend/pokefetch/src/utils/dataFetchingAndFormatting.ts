@@ -166,7 +166,7 @@ export const getPokemonData = async (name: string): Promise<PokemonDataType | Er
         img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
         svg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png",
       },
-      type: ["ice", "steel"],
+      type: ["normal", "fighting"],
       species: "pikachu",
       abilities: ["static", "lightning-rod"],
       stats: {

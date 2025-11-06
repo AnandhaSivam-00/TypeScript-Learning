@@ -69,10 +69,12 @@ const OutputSection = (): JSX.Element => {
       {pokemonDetails && (
         <div className='mx-auto w-full lg:w-[55rem] xl:w-[68rem] h-5xl grid grid-cols-12 border-1 border-gray-5 rounded-md p-2 md:p-4 shadow-xl mb-5'>
           <div className='col-span-12 md:col-span-5 flex flex-col justify-start items-start'>
-            <div className='flex flex-row justify-start items-start gap-x-2'>
               <div className='flex flex-col justify-center items-start gap-y-1'>
-                <h1 className='font-semibold!'>{changeFirstLetterToUpperCase(removeHypens(pokemonDetails?.name))}</h1>
-                <div className='flex flex-row justify-start items-center gap-x-2'>
+                <div className='flex flex-row justify-start items-start gap-x-4'>
+                  <h1 className='font-semibold!'>{changeFirstLetterToUpperCase(removeHypens(pokemonDetails?.name))}</h1>
+                  <span className='text-xs text-gray-2 absolute top-0 left'>#{pokemonDetails?.order}</span>
+                </div>
+                <div className='flex flex-row flex-wrap justify-start items-center gap-2'>
                   {pokemonDetails.type.map((item, index) => {
                       return (
                         <RoundedPill 
@@ -84,8 +86,6 @@ const OutputSection = (): JSX.Element => {
                   })}
                 </div>
               </div>
-              <span className='text-xs text-gray-2'>#{pokemonDetails?.order}</span>
-            </div>
             <img 
               src={pokemonDetails.sprites.img} 
               alt={pokemonDetails.name} 

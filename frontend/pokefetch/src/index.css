@@ -30,7 +30,7 @@
   --color-gray-4: #f0eee6;
   --color-gray-5: #3f3f3d;
   
-  --color-normal: #BCBCAC;
+  --color-normal: #5f5f53;
   --color-fighting: #BC5442;
   --color-flying: #669AFF;
   --color-poison: #AB549A;
@@ -38,17 +38,28 @@
   --color-rock: #BCAC66;
   --color-bug: #ABBC1C;
   --color-ghost: #6666BC;
-  --color-steel: #ABACBC;
+  --color-steel: #8a8b99;
   --color-fire: #FF421C;
   --color-water: #2F9AFF;
-  --color-grass: #78CD54;
+  --color-grass: #67cf3a;
   --color-electric: #FFCD30;
   --color-psychic: #FF549A;
-  --color-ice: #78DEFF;
+  --color-ice: #24c8ff;
   --color-dragon: #7866EF;
   --color-dark: #785442;
-  --color-fairy: #FFACFF;
+  --color-fairy: #ff52ff;
   --color-shadow: #0E2E4C;
+
+  --backdrop-black: #000000;
+  --backdrop-blue: #2F9AFF;
+  --backdrop-brown: #A0522D;
+  --backdrop-gray: #808080;
+  --backdrop-green: #78CD54;
+  --backdrop-pink: #FFACFF;
+  --backdrop-purple: #7866EF;
+  --backdrop-red: #FF421C;
+  --backdrop-white: #FFFFFF;
+  --backdrop-yellow: #FFCD30;
 
   --font-body-size: var(--font-size-2);
   --font-size-11: 3.5rem;

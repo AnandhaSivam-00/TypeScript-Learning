@@ -10,8 +10,8 @@ type RoundedPillProps = {
 
 const RoundedPill = ({ text, color }: RoundedPillProps): JSX.Element => {
     return (
-        <div className={`inline-block w-auto h-auto px-3 rounded-full shadow-sm ${pokeTypeBgColors[color]}`}>
-            <span className='text-[0.7rem] m-0 font-bold'>{text}</span>
+        <div className={`inline-block w-auto h-auto px-3 rounded-full ${pokeTypeBgColors[color]}`}>
+            <span className='text-[0.7rem] m-0 font-semibold text'>{text}</span>
         </div>
     )
 }
