@@ -2,12 +2,12 @@ import { lazy, useEffect, useState, type JSX } from 'react'
 import { Outlet, useLocation } from 'react-router'
 
 const SearchSection = lazy(() => import('../components/search'));
+const Footer = lazy(() => import('../components/Footer'))
 
 import PokemonNamesContextProvider from '../utils/PokemonNamesContextProvider';
 
 import { getCurrentTimePeriod } from '../utils/helperFunctions';
 
-import PokeFetchLogoOriginal from '../assets/pokefetch-icon-original.png';
 import PokeFetchLogo from '../assets/pokefetch-icon-v1.svg';
 // import PokeFetchLogo from '../assets/pokefetch-icon-v2.svg';
 // import PokeFetchLogo from '../assets/pokefetch-icon-v3.svg';
@@ -68,24 +68,7 @@ const Home = (): JSX.Element => {
         </PokemonNamesContextProvider>
       </div>
       
-      <footer className='bg-black-background w-full h-auto px-3 py-2 pt-4 overflow-hidden'>
-        <div className='w-full relative bg-transparant z-1'>
-          <h5 className='font-semibold!'>BY LITTLE THINKER</h5>
-          
-          <div className='w-full flex flex-col sm:flex-row justify-start sm:justify-between items-start gap-2 [&>span,a]:text-xs [&>span,a]:text-gray-4'>
-            <span>@{new Date().getFullYear()}</span>
-            <a href="https://github.com/davidhckh/pokedex/blob/main/javascript/list.js" target='_blank' className='underline hover:text-black-accent-2'>github.com/AnandhaSivam-00</a>
-          </div> 
-          
-          <a href='https://pokeapi.co/' target='_blank' className='w-full text-[0.5rem] text-black-accent-1 underline hover:text-black-accent-2 mt-1'>Credits: PokéAPI</a>
-
-          <img 
-            src={PokeFetchLogoOriginal}
-            alt='footer back logo'
-            className='w-auto h-full object-cover absolute right-0 bottom-0 z-0 opacity-20 transform translate-x-5 translate-y-5 -rotate-30 pointer-events-none'
-          />
-        </div>
-      </footer>
+      <Footer />
     </main>
   )
 }
