@@ -15,7 +15,7 @@ const SearchSection = (): JSX.Element => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  const [error, handleFormAction, _] = useActionState(
+  const [, handleFormAction, _] = useActionState(
     (_: unknown, formData: FormData) => {
       console.log("Form submitted");
       const searchQuery: string | undefined = formData.get('search')?.toString().trim();
@@ -24,7 +24,7 @@ const SearchSection = (): JSX.Element => {
         return null;
       } 
       else {
-        return "Please enter a valid Pokémon name or ID.";
+        return "Please enter a valid Pokémon name";
       }
     },
     null

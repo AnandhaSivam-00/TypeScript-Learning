@@ -1,4 +1,4 @@
-import React, { type JSX } from 'react'
+import type {JSX} from 'react'
 
 import PokemonShadow from '../../assets/pokemon-shadow-mask.png';
 

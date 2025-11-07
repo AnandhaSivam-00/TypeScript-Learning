@@ -161,7 +161,10 @@ const OutputSection = (): JSX.Element => {
                 <h5 className='font-semibold!'>Stats</h5>
                 <div className="w-full">
                   {pokemonDetails.stats && (
-                    <StatsTable statsData={pokemonDetails.stats} color={pokemonDetails.color}/>
+                    <StatsTable 
+                      statsData={pokemonDetails.stats} 
+                      color={pokemonDetails.color}
+                    />
                   )}
                 </div>
               </div>
