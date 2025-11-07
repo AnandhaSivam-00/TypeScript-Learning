@@ -18,7 +18,7 @@ const errorData: ErrorType = {
 
 export const getAllPokemonNames = async (): Promise<PokeNamesDataType | undefined> => {
   try {
-    const response: any = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
+    const response: any = await axios.get(`${import.meta.env.VITE_POKEAPI_BASE_URL}/pokemon?limit=100000&offset=0`);
     const data: PokeNamesDataType = {
       count: response.data.count,
       results: response.data.results
@@ -127,7 +127,7 @@ export const getPokemonDetails = async (name: string): Promise<PokemonDetailsTyp
 
 export const getPokemonData = async (name: string): Promise<PokemonDataType | ErrorType> => {
   try {
-    const response: any = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    const response: any = await axios.get(`${import.meta.env.VITE_POKEAPI_BASE_URL}/pokemon/${name}`);
 
     const abilities: string[] = response.data.abilities.map((item: any) => item.ability.name);
     const type: string[] = response.data.types.map((item: any) => item.type.name);
@@ -137,6 +137,13 @@ export const getPokemonData = async (name: string): Promise<PokemonDataType | Er
         return entry;
       }, {} as PokemonStatsType);
 
+    const imgURL: string | undefined = response.data.sprites.front_default !== null ?
+      response.data.sprites.front_default : undefined;
+    const svgURL: string | undefined = response.data.sprites.front_shiny !== null ?
+      response.data.sprites.front_shiny : undefined;
+    const gifURL: string | undefined = response.data.sprites.versions["generation-v"]["black-white"].animated.front_default !== null ?
+      response.data.sprites.versions["generation-v"]["black-white"].animated.front_default : undefined;
+
     const pokemonData: PokemonDataType = {
       id: response.data.id,
       name: response.data.name,
@@ -145,9 +152,9 @@ export const getPokemonData = async (name: string): Promise<PokemonDataType | Er
       order: response.data.order,
       base_experience: response.data.base_experience,
       sprites: {
-        img: response.data.sprites?.front_default,
-        svg: response.data.sprites?.front_shiny,
-        gif: response.data.sprites.other.showdown?.front_default
+        img: imgURL,
+        svg: svgURL,
+        gif: gifURL
       },
       type,
       species: response.data.species.name,
@@ -165,6 +172,7 @@ export const getPokemonData = async (name: string): Promise<PokemonDataType | Er
     //   sprites: {
     //     img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/3.gif",
     //     svg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png",
+    //     gif: undefined
     //   },
     //   type: ["normal", "fighting"],
     //   species: "pikachu",
@@ -196,7 +204,7 @@ export const getPokemonData = async (name: string): Promise<PokemonDataType | Er
 
 export const getPokemonSpeciesData = async (name: string): Promise<SpeciesDataType | ErrorType> => {
   try {
-    const response: any = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
+    const response: any = await axios.get(`${import.meta.env.VITE_POKEAPI_BASE_URL}/pokemon-species/${name}`);
 
     const about: string = response.data.flavor_text_entries
       .filter((entry: any) => entry.language.name === "en")

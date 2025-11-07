@@ -28,7 +28,7 @@ export const removeHypens = (str: string | undefined): string => {
     return 'N/A'
   }
   
-  return str.replace("-", " ");
+  return str.replaceAll("-", " ");
 }
 
 export const getRandomNumber = (maxNum: number): number => {
