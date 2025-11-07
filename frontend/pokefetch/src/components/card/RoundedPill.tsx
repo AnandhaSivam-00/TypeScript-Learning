@@ -1,7 +1,7 @@
 import type {JSX} from 'react'
 
-import type { PokeTypesColorType } from '../utils/types';
-import { pokeTypeBgColors } from '../utils/colors';
+import type { PokeTypesColorType } from '../../utils/types';
+import { pokeTypeBgColors } from '../../utils/colors';
 
 type RoundedPillProps = {
     text: string;

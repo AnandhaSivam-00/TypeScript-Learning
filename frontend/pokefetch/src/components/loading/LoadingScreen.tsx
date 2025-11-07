@@ -1,6 +1,6 @@
 import type {JSX} from 'react'
 
-import PokeFetchLogoOriginal from '../assets/pokefetch-icon-original.png'
+import PokeFetchLogoOriginal from '../../assets/pokefetch-icon-original.png'
 
 const LoadingScreen = (): JSX.Element => {
   return (
@@ -9,6 +9,7 @@ const LoadingScreen = (): JSX.Element => {
         src={PokeFetchLogoOriginal}
         alt='PokeFetch loding logo'
         className='w-auto h-10 object-contain mb-3 opacity-70 animate-spin'
+        loading='eager'
       />
       <h6 className='animate-pulse'>Loading...</h6>
     </section>

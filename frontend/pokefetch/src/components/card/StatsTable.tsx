@@ -2,9 +2,9 @@ import React, { useState, useEffect, type JSX } from 'react'
 
 import ProgressBar from './ProgressBar';
 
-import { getRoundedValue } from '../utils/helperFunctions';
+import { getRoundedValue } from '../../utils/helperFunctions';
 
-import type { PokemonStatsType } from '../utils/types';
+import type { PokemonStatsType } from '../../utils/types';
 
 const StatsTable = ({statsData, color}: { statsData: PokemonStatsType, color: string }): JSX.Element => {
     const [marks, setMarks] = useState<number[]>([]);

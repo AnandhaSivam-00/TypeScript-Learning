@@ -1,6 +1,6 @@
 import React, { type JSX } from 'react'
 
-import PokemonShadow from '../assets/pokemon-shadow-mask.png';
+import PokemonShadow from '../../assets/pokemon-shadow-mask.png';
 
 const LoadingState = (): JSX.Element => {
   return (

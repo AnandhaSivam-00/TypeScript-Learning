@@ -1,5 +1,7 @@
-import { useEffect, useState, type JSX } from 'react'
+import { lazy, useEffect, useState, type JSX } from 'react'
 import { Outlet, useLocation } from 'react-router'
+
+const SearchSection = lazy(() => import('../components/search'));
 
 import PokemonNamesContextProvider from '../utils/PokemonNamesContextProvider';
 
@@ -7,7 +9,6 @@ import { getCurrentTimePeriod } from '../utils/helperFunctions';
 
 import PokeFetchLogoOriginal from '../assets/pokefetch-icon-original.png';
 import PokeFetchLogo from '../assets/pokefetch-icon-v1.svg';
-import SearchSection from '../components/SearchSection';
 // import PokeFetchLogo from '../assets/pokefetch-icon-v2.svg';
 // import PokeFetchLogo from '../assets/pokefetch-icon-v3.svg';
 

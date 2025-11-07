@@ -2,10 +2,10 @@ import {useActionState, useState, type JSX} from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import ResultPill from './ResultPill';
-import { SearchIcon } from '../assets/Icons'
+import { SearchIcon } from '../../assets/Icons'
 
-import { usePokeNamesContext } from '../utils/PokemonNamesContextProvider'
-import type { PokeNamesDataType } from '../utils/types';
+import { usePokeNamesContext } from '../../utils/PokemonNamesContextProvider'
+import type { PokeNamesDataType } from '../../utils/types';
 
 const SearchSection = (): JSX.Element => {
   const [searchQueryString, setSearchQueryString] = useState<string>('');

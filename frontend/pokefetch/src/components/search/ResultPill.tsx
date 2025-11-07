@@ -1,6 +1,6 @@
 import {useEffect, useState, type JSX} from 'react';
 
-import { changeFirstLetterToUpperCase } from '../utils/helperFunctions';
+import { changeFirstLetterToUpperCase } from '../../utils/helperFunctions';
 
 type ResultPillProps = {
   searchQueryString: string;

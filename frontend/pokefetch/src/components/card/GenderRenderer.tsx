@@ -1,6 +1,6 @@
 import type {JSX} from 'react'
 
-import { MaleSymbolIcon, FemaleSymbolIcon } from '../assets/Icons'
+import { MaleSymbolIcon, FemaleSymbolIcon } from '../../assets/Icons'
 
 const GenderRenderer = ({ genderRate }: { genderRate: number }): JSX.Element => {
     switch(genderRate) {
