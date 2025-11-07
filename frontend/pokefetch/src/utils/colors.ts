@@ -2,15 +2,15 @@ import { type BackdropColorsType, type PokeTypesColorType } from "./types"
 
 export const backdropColors: Record<BackdropColorsType, string> = {
     'black': '#000000',
-    'blue': '#2F9AFF',
-    'brown': '#A0522D',
-    'gray': '#808080',
-    'green': '#78CD54',
-    'pink': '#FFACFF',
-    'purple': '#7866EF',
-    'red': '#FF421C',
-    'white': '#FFFFFF',
-    'yellow': '#FFCD30'
+    'blue': '#0e8affd1',
+    'brown': '#a0512dd2',
+    'gray': '#777777f8',
+    'green': '#94f36cc2',
+    'pink': '#ffb9ffd1',
+    'purple': '#7868e0d2',
+    'red': '#ff3d169e',
+    'white': '#ffffffc4',
+    'yellow': '#ecc238b9'
 }
 
 export const pokeTypeBgColors: Record<PokeTypesColorType, string> = {

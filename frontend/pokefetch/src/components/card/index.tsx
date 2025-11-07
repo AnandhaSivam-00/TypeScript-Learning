@@ -102,9 +102,9 @@ const OutputSection = (): JSX.Element => {
                     
                   )}
                   <div 
-                    className='absolute top-1/2 right-[30%] w-30 h-25'
+                    className='absolute top-1/2 right-[25%] w-30 h-25'
                   >
-                    <div className='w-full h-full bg-white/0 hover:bg-white/50 blur-2xl transform-3d skew-y-10 -skew-x-3 -translate-y-5 -rotate-20 rounded-[3rem]transition-all duration-500 ease-in' />
+                    <div className='w-full h-full bg-white/0 hover:bg-white/20 blur-2xl transform-3d skew-y-10 -skew-x-3 -translate-y-5 -rotate-20 rounded-[3rem]transition-all duration-500 ease-in' />
                   </div>
                 </div>
             </div>

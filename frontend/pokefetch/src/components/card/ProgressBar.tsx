@@ -1,8 +1,11 @@
 import type {JSX} from 'react'
 
+import { backdropColors } from '../../utils/colors'
+import type { BackdropColorsType } from '../../utils/types'
+
 type ProgressBarProps = {
     mark: number;
-    color: string
+    color: BackdropColorsType;
 }
 
 const ProgressBar = ({mark, color}: ProgressBarProps): JSX.Element => {
@@ -12,7 +15,7 @@ const ProgressBar = ({mark, color}: ProgressBarProps): JSX.Element => {
                 className="h-full rounded-full absolute inset-0"
                 style={{
                     width: `${mark}%`,
-                    backgroundColor: `${color}`
+                    backgroundColor: `${backdropColors[color]}`
                 }}
             >
             </div>

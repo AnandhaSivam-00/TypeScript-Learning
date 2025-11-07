@@ -8,6 +8,7 @@ import type {
   PokemonDetailsType,
   PokemonStatsType
 } from './types';
+
 import { getRandomNumber } from './helperFunctions';
 
 
@@ -206,9 +207,10 @@ export const getPokemonSpeciesData = async (name: string): Promise<SpeciesDataTy
   try {
     const response: any = await axios.get(`${import.meta.env.VITE_POKEAPI_BASE_URL}/pokemon-species/${name}`);
 
-    const about: string = response.data.flavor_text_entries
+    const flavorTexts: string[] = response.data.flavor_text_entries
       .filter((entry: any) => entry.language.name === "en")
-      .map((entry: any) => entry.flavor_text.replace("", " "))[getRandomNumber(5)]
+      .map((entry: any) => entry.flavor_text.replaceAll("", " "))
+    const about: string = flavorTexts[getRandomNumber(flavorTexts.length - 1)]
 
     const category: string = response.data.genera
       .filter((entry: any) => entry.language.name === "en")
