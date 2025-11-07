@@ -8,7 +8,7 @@ export type PokeNamesDataType = {
   results: {
     name: string;
     url: string;
-  }
+  }[]
 }
 
 export type PokemonStatsType = {
