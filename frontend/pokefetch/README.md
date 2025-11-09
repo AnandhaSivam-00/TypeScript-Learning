@@ -71,3 +71,30 @@ export default defineConfig([
   },
 ])
 ```
+
+
+    const responseData: PokemonDataType | unknown = await getPokemonData(name);
+    // @ts-ignore
+    if("message" in responseData) {
+      console.log(responseData);
+      // @ts-ignore
+      throw new axios.AxiosError(responseData.response);
+    }
+
+    const pokemonData: PokemonDataType = responseData as PokemonDataType;
+
+    const responseSpecies: SpeciesDataType | unknown = pokemonData.name === pokemonData.species ? 
+      await getPokemonSpeciesData(name) :
+      await getPokemonSpeciesData(pokemonData.species);
+
+    const speciesData: SpeciesDataType = responseSpecies as SpeciesDataType;
+
+    console.log({
+      ...pokemonData,
+      ...speciesData
+    })
+
+    return {
+      ...pokemonData,
+      ...speciesData
+    };
