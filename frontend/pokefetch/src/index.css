@@ -50,17 +50,6 @@
   --color-fairy: #ff52ff;
   --color-shadow: #0E2E4C;
 
-  --backdrop-black: #000000;
-  --backdrop-blue: #2F9AFF;
-  --backdrop-brown: #A0522D;
-  --backdrop-gray: #808080;
-  --backdrop-green: #78CD54;
-  --backdrop-pink: #FFACFF;
-  --backdrop-purple: #7866EF;
-  --backdrop-red: #FF421C;
-  --backdrop-white: #FFFFFF;
-  --backdrop-yellow: #FFCD30;
-
   --font-body-size: var(--font-size-2);
   --font-size-11: 3.5rem;
   --font-size-10: 3rem;

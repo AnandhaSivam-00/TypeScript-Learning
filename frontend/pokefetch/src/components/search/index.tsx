@@ -17,7 +17,6 @@ const SearchSection = (): JSX.Element => {
 
   const [, handleFormAction, _] = useActionState(
     (_: unknown, formData: FormData) => {
-      console.log("Form submitted");
       const searchQuery: string | undefined = formData.get('search')?.toString().trim();
       if(searchQuery) {
         navigate(`/poke-search?name=${searchQuery.toLowerCase()}`);

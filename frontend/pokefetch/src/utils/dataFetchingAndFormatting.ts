@@ -6,9 +6,8 @@ import type {
   PokemonDataType, 
   SpeciesDataType,
   PokemonDetailsType,
-  PokemonStatsType
+  PokemonStatsType,
 } from './types';
-
 import { getRandomNumber } from './helperFunctions';
 
 
@@ -19,7 +18,7 @@ const errorData: ErrorType = {
 
 export const getAllPokemonNames = async (): Promise<PokeNamesDataType | undefined> => {
   try {
-    const response: any = await axios.get(`${import.meta.env.VITE_POKEAPI_BASE_URL}/pokemon?limit=100000&offset=0`);
+    const response: any = await axios.get(`${import.meta.env.VITE_PROXY_API}tot-count&limit=100000&offset=0`);
     const data: PokeNamesDataType = {
       count: response.data.count,
       results: response.data.results
@@ -103,10 +102,10 @@ export const getPokemonDetails = async (name: string): Promise<PokemonDetailsTyp
       throw new Error(speciesData.message);
     }
 
-    console.log({
-      ...pokemonData,
-      ...speciesData
-    })
+    // console.log({
+    //   ...pokemonData,
+    //   ...speciesData
+    // })
 
     return {
       ...pokemonData,
@@ -128,7 +127,7 @@ export const getPokemonDetails = async (name: string): Promise<PokemonDetailsTyp
 
 export const getPokemonData = async (name: string): Promise<PokemonDataType | ErrorType> => {
   try {
-    const response: any = await axios.get(`${import.meta.env.VITE_POKEAPI_BASE_URL}/pokemon/${name}`);
+    const response: any = await axios.get(`${import.meta.env.VITE_PROXY_API}pokemon&name=${name}`);
 
     const abilities: string[] = response.data.abilities.map((item: any) => item.ability.name);
     const type: string[] = response.data.types.map((item: any) => item.type.name);
@@ -205,7 +204,7 @@ export const getPokemonData = async (name: string): Promise<PokemonDataType | Er
 
 export const getPokemonSpeciesData = async (name: string): Promise<SpeciesDataType | ErrorType> => {
   try {
-    const response: any = await axios.get(`${import.meta.env.VITE_POKEAPI_BASE_URL}/pokemon-species/${name}`);
+    const response: any = await axios.get(`${import.meta.env.VITE_PROXY_API}pokemon-species&name=${name}`);
 
     const flavorTexts: string[] = response.data.flavor_text_entries
       .filter((entry: any) => entry.language.name === "en")
