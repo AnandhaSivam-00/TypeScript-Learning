@@ -7,21 +7,25 @@ import {
 } from 'react';
 
 import { getAllPokemonNames } from './dataFetchingAndFormatting';
-import type { PokeNamesDataType } from '../utils/types';
+import type { ErrorType, PokeNamesDataType } from '../utils/types';
+import ErrorBlock from '../components/ErrorBlock';
 
 const PokeNamesContext = createContext({});
 
 const PokeNamesContextProvider = ({ children }: { children: JSX.Element[] }) => {
   const [pokemonNamesData, setPokemonNamesData] = useState<Partial<PokeNamesDataType>>({});
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     (async () => {
       if(pokemonNamesData) {
-        const pokemonNames: Awaited<Promise<PokeNamesDataType | undefined>> = await getAllPokemonNames();
+        const pokemonNames: PokeNamesDataType | ErrorType = await getAllPokemonNames();
 
-        if(pokemonNames !== undefined) {
-          setPokemonNamesData(pokemonNames);
+        if('message' in pokemonNames) {
+          setError(pokemonNames.message);
+          return;
         }
+        setPokemonNamesData(pokemonNames);
       }
     })();
   }, [])
@@ -29,6 +33,9 @@ const PokeNamesContextProvider = ({ children }: { children: JSX.Element[] }) => 
   return (
     <PokeNamesContext value={pokemonNamesData}>
       {children}
+      {error && (
+        <ErrorBlock message={error + " - Please refresh the page or try again later."} />
+      )}
     </PokeNamesContext>
   )
 }

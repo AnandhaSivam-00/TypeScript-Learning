@@ -23,7 +23,7 @@ const responseErrorData = (name: string, message: string): ErrorType => {
   }
 }
 
-export const getAllPokemonNames = async (): Promise<PokeNamesDataType | undefined> => {
+export const getAllPokemonNames = async (): Promise<PokeNamesDataType | ErrorType> => {
   try {
     const response: any = await axios.get(`${import.meta.env.VITE_PROXY_API}tot-count&limit=100000&offset=0`);
     const data: PokeNamesDataType = {
@@ -34,8 +34,15 @@ export const getAllPokemonNames = async (): Promise<PokeNamesDataType | undefine
     return data;
   }
   catch(error) {
-    console.log(error);
-    return undefined;
+    if(axios.isAxiosError(error)) { 
+      return responseErrorData(error.response?.data.error, error.response?.statusText!);
+    }
+    else if(error instanceof Error) {
+      return responseErrorData(error.name, error.message);
+    }
+    else {
+      return errorData;
+    }
   }
 }
 
@@ -47,12 +54,6 @@ export const getPokemonDetails = async (name: string): Promise<PokemonDetailsTyp
     const speciesData: SpeciesDataType | unknown = pokemonData.name === pokemonData.species ? 
       await getPokemonSpeciesData(name) : // @ts-ignore
       await getPokemonSpeciesData(pokemonData.species);
-
-    
-    console.log({// @ts-ignore  
-      ...pokemonData, // @ts-ignore
-      ...speciesData
-    })
 
     return { // @ts-ignore
       ...pokemonData, // @ts-ignore

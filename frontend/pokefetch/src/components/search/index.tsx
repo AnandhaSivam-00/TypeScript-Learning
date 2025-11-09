@@ -39,7 +39,7 @@ const SearchSection = (): JSX.Element => {
         </span>
   
         <form 
-          className='relative h-auto mx-auto w-full md:w-[38rem] bg-gray-1 rounded-lg py-1 focus-within:ring-1 focus-within:ring-black-accent-2/50 border-1 border-gray-5 hover:border-gray-2 shadow-lg focus-within:shadow-xl px-2 transition-discrete duration-200'
+          className={`relative h-auto mx-auto w-full md:w-[38rem] bg-gray-1 rounded-lg py-1 focus-within:ring-1 focus-within:ring-black-accent-2/50 border-1 border-gray-5 hover:border-gray-2 shadow-lg focus-within:shadow-xl px-2 transition-discrete duration-200 ${Object.keys(pokemonNames).length === 0 ? 'cursor-not-allowed' : ''}`}
           action={handleFormAction}
         >
           <input 
@@ -52,6 +52,7 @@ const SearchSection = (): JSX.Element => {
               setShowResultPill(true);
               setSearchQueryString(event.target.value)
             }}
+            disabled={Object.keys(pokemonNames).length === 0}
             required
           />
   
