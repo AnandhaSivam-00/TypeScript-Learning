@@ -48,6 +48,16 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
                 }
 
                 const response = await fetch(`${env.POKEAPI_BASE_URL}/pokemon/${name}`)
+
+                if(response.status === 404) {
+                    return new Response(
+                        JSON.stringify({ error: {
+                            name: "Not Found",
+                            message: `Pokemon named ${name} was not found in the Pokedex database`
+                        }}),
+                        setErrorResponse(404)
+                    )
+                }
                 const data = await response.text();
 
                 return new Response(data, {
@@ -66,6 +76,16 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
                 }
 
                 const response = await fetch(`${env.POKEAPI_BASE_URL}/pokemon-species/${name}`)
+
+                if(response.status === 404) {
+                    return new Response(
+                        JSON.stringify({ error: {
+                            name: "Not Found",
+                            message: `Pokemon species named ${name} was not found in the Pokedex database`
+                        }}),
+                        setErrorResponse(404)
+                    )
+                }
                 const data = await response.text();
 
                 return new Response(data, {
@@ -77,7 +97,7 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
                 throw new Error("Invalid endpoint");
         }
     }
-    catch (error) {
+    catch(error) {
         console.log(error);
 
         return new Response(
