@@ -134,10 +134,6 @@ const OutputSection = (): JSX.Element => {
                     <h6>Category</h6>
                     <p>{changeFirstLetterToUpperCase(pokemonDetails.category)}</p> 
                   </CardTail>
-                  {/* <CardTail>
-                    <h6 className='text-sm! mb-0!'>Abilities</h6>
-                    <p className='mb-0! text-xl!'>{pokemonDetails?.abilities?.join(', ')}</p>
-                  </CardTail> */}
                 </div>
               </div>
 

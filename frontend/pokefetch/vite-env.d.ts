@@ -3,7 +3,6 @@ interface ViteTypeOptions {
 }
 
 interface ImportMetaEnv {
-  readonly VITE_POKEAPI_BASE_URL: string;
   readonly VITE_PROXY_API: string;
 }
 
