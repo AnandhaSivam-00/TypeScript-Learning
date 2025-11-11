@@ -4,6 +4,8 @@ pages_build_output_dir = "dist"
 
 [vars]  
 POKEAPI_BASE_URL = "https://pokeapi.co/api/v2"
+VITE_PROXY_API = "/api/request-proxy?endpoint="
 
 [env.production.vars]
 POKEAPI_BASE_URL = "https://pokeapi.co/api/v2"
+VITE_PROXY_API = "/api/request-proxy?endpoint="
