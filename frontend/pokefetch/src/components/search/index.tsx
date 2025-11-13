@@ -20,6 +20,7 @@ const SearchSection = (): JSX.Element => {
       const searchQuery: string | undefined = formData.get('search')?.toString().trim();
       if(searchQuery) {
         navigate(`/poke-search?name=${searchQuery.toLowerCase()}`);
+        setSearchQueryString('');
         return null;
       } 
       else {
@@ -39,7 +40,7 @@ const SearchSection = (): JSX.Element => {
         </span>
   
         <form 
-          className={`relative h-auto mx-auto w-full md:w-[38rem] bg-gray-1 rounded-lg py-1 focus-within:ring-1 focus-within:ring-black-accent-2/50 border-1 border-gray-5 hover:border-gray-2 shadow-lg focus-within:shadow-xl px-2 transition-discrete duration-200 ${Object.keys(pokemonNames).length === 0 ? 'cursor-not-allowed' : ''}`}
+          className={`relative h-auto mx-auto w-full md:w-[38rem] bg-gray-1 rounded-lg py-1 focus-within:ring-1 focus-within:ring-black-accent-2/50 border border-gray-5 hover:border-gray-2 shadow-lg focus-within:shadow-xl px-2 transition-discrete duration-200 ${Object.keys(pokemonNames).length === 0 ? 'cursor-not-allowed' : ''}`}
           action={handleFormAction}
         >
           <input 
@@ -67,7 +68,7 @@ const SearchSection = (): JSX.Element => {
           {showResultPill && searchQueryString && pokemonNames && (
             <ResultPill 
               searchQueryString={searchQueryString}
-              pokemonNames={pokemonNames?.results!}
+              pokemonNames={pokemonNames.results!}
               setSearchQueryString={setSearchQueryString}
               setShowResultPill={setShowResultPill}
             />

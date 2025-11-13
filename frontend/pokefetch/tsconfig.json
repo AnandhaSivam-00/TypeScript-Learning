@@ -10,7 +10,8 @@
     "module": "ESNext",
     "target": "ESNext",
     "moduleResolution": "Bundler",
-    "strict": true
+    "strict": true,
+    "noImplicitAny": true
   }
 
 }
