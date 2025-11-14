@@ -1,4 +1,6 @@
-import { lazy, useEffect, useState, type JSX } from 'react'
+'use client'
+
+import { lazy, useEffect, useState, startTransition, type JSX } from 'react'
 import { Outlet, useLocation } from 'react-router'
 
 const SearchSection = lazy(() => import('../components/search'));
@@ -26,7 +28,9 @@ const Home = (): JSX.Element => {
       setSearchFocus(true);
     }
 
-    setGreetingMessage(getCurrentTimePeriod())
+    startTransition(() => {
+      setGreetingMessage(getCurrentTimePeriod())
+    })
   }, [currentPath])
   
   return (

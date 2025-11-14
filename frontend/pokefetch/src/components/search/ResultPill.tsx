@@ -1,4 +1,4 @@
-import {useEffect, useState, type JSX} from 'react';
+import {useEffect, useState, startTransition, type JSX} from 'react';
 
 import { changeFirstLetterToUpperCase } from '../../utils/helperFunctions';
 
@@ -29,7 +29,9 @@ const ResultPill = ({
       .slice(0, 11)
       .map((pokemon) => changeFirstLetterToUpperCase(pokemon.name));
 
-    setFilteredPokemonNames(filteredNames);
+      startTransition(() => {
+        setFilteredPokemonNames(filteredNames);
+      })
   }, [searchQueryString, pokemonNames])
   
   return (

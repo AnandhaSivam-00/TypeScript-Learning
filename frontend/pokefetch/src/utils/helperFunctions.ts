@@ -1,3 +1,5 @@
+'use server'
+
 export const getCurrentTimePeriod = (): string => {
   const currentHour: number = new Date().getHours();
 

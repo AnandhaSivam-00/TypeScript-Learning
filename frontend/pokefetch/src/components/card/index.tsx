@@ -1,3 +1,5 @@
+'use client'
+
 import {useEffect, useState, lazy, Suspense, useTransition, type JSX} from 'react'
 import { useSearchParams } from 'react-router-dom';
 
