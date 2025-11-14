@@ -1,4 +1,4 @@
-import {type JSX} from 'react'
+import {startTransition, type JSX} from 'react'
 
 type CreditsModalProps = {
     isVisible: boolean,
@@ -11,7 +11,11 @@ const CreditsModal = ({ isVisible, setOpenCreditsModal }: CreditsModalProps): JS
         <div className='bg-black w-full sm:max-w-[30rem] h-auto p-3 flex flex-col justify-center items-center rounded-lg drop-shadow-2xl drop-shadow-gray-3 border-2 border-gray-2'>
             <button 
                 className='self-end px-2 pb-2 cursor-pointer hover:text-primary-accent-1'
-                onClick={() => setOpenCreditsModal(false)}
+                onClick={() => {
+                    startTransition(() => {
+                        setOpenCreditsModal(false);
+                    })
+                }}
             >
                 X
             </button>

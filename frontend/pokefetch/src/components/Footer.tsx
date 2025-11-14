@@ -1,4 +1,4 @@
-import { useState, type JSX } from 'react'
+import { useState, startTransition, type JSX } from 'react'
 
 import CreditsModal from './CreditsModal'
 
@@ -20,7 +20,11 @@ const Footer = (): JSX.Element => {
 
                     <button 
                         className='text-[0.5rem] text-black-accent-1 underline hover:text-black-accent-2 mt-1 cursor-pointer'
-                        onClick={() => setOpenCreditsModal(true)}
+                        onClick={() => {
+                            startTransition(() => {
+                                setOpenCreditsModal(true);
+                            })
+                        }}
                     >
                         About & Credits
                     </button>
