@@ -1,4 +1,4 @@
-import { useState, startTransition, type JSX } from 'react'
+import { useState, startTransition, Activity, type JSX } from 'react'
 
 import CreditsModal from './CreditsModal'
 
@@ -37,10 +37,12 @@ const Footer = (): JSX.Element => {
                 </div>
             </footer>
 
-            <CreditsModal 
-                isVisible={openCreditsModal} 
-                setOpenCreditsModal={setOpenCreditsModal}
-            />
+            <Activity mode={openCreditsModal ? 'visible' : 'hidden'}>
+                <CreditsModal 
+                    setOpenCreditsModal={setOpenCreditsModal}
+                />
+            </Activity>
+
         </>
     )
 }

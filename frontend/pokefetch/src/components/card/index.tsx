@@ -1,6 +1,6 @@
 'use client'
 
-import {useEffect, useState, lazy, Suspense, useTransition, type JSX} from 'react'
+import {useEffect, useState, lazy, Suspense, useTransition, type JSX, Activity} from 'react'
 import { useSearchParams } from 'react-router-dom';
 
 const RoundedPill = lazy(() => import('./RoundedPill'));
@@ -21,7 +21,6 @@ import {
 } from '../../utils/types';
 
 const OutputSection = (): JSX.Element => {
-  // const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [pokemonDetails, setPokemonDetails] = useState<PokemonDetailsType | null>(null);
 
@@ -32,13 +31,11 @@ const OutputSection = (): JSX.Element => {
 
   useEffect(() => {
     if(!pokemonName) {
-      // setIsLoading(false);
       setErrorMessage(null);
       setPokemonDetails(null);
       return;
     }
 
-    // setIsLoading(true);
     setErrorMessage(null);
     setPokemonDetails(null);
 
@@ -47,7 +44,6 @@ const OutputSection = (): JSX.Element => {
 
       if('message' in result) {
         setErrorMessage(result.message);
-        // setIsLoading(false);
         return;
       }
 
@@ -58,9 +54,9 @@ const OutputSection = (): JSX.Element => {
 
   return (
     <section className='w-full min-h-screen px-2'>
-      {isPending && (
+      <Activity mode={isPending ? 'visible' : 'hidden'}>
         <LoadingState />
-      )}
+      </Activity>
 
       {errorMessage && (
         <div className='w-full h-auto flex justify-center items-center px-2'>
@@ -137,10 +133,6 @@ const OutputSection = (): JSX.Element => {
                     <h6>Category</h6>
                     <p>{changeFirstLetterToUpperCase(pokemonDetails.category)}</p> 
                   </CardTail>
-                  {/* <CardTail>
-                    <h6 className='text-sm! mb-0!'>Abilities</h6>
-                    <p className='mb-0! text-xl!'>{pokemonDetails?.abilities?.join(', ')}</p>
-                  </CardTail> */}
                 </div>
               </div>
 
