@@ -1,18 +1,20 @@
-import {useActionState, useState, type JSX} from 'react'
+import {useActionState, useState, use, type JSX} from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import ResultPill from './ResultPill';
 import { SearchIcon } from '../../assets/Icons'
 
-import { usePokeNamesContext } from '../../utils/PokemonNamesContextProvider'
+import { PokeNamesContext } from '../../utils/PokemonNamesContextProvider'
 import type { PokeNamesDataType } from '../../utils/types';
 
 const SearchSection = (): JSX.Element => {
   const [searchQueryString, setSearchQueryString] = useState<string>('');
   const [showResultPill, setShowResultPill] = useState<boolean>(true);
 
-  const pokemonNames: Partial<PokeNamesDataType> = usePokeNamesContext();
+  const pokemonNames: Partial<PokeNamesDataType> = use(PokeNamesContext);
+
   const navigate = useNavigate();
+  
   const [searchParams] = useSearchParams();
 
   const [, handleFormAction, _] = useActionState(
