@@ -1,3 +1,5 @@
+'use client'
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import {lazy, Suspense, type JSX} from 'react'
 
@@ -6,7 +8,6 @@ const OutputSection = lazy(() => import('./components/card'));
 const PageNotFound = lazy(() => import('./components/PageNotFound'));
 
 import LoadingScreen from './components/loading/LoadingScreen';
-
 
 import './App.css'
 

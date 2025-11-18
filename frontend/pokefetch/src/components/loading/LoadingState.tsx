@@ -4,7 +4,7 @@ import PokemonShadow from '../../assets/pokemon-shadow-mask.png';
 
 const LoadingState = (): JSX.Element => {
   return (
-    <div className='w-auto h-auto'>
+    <div className='w-full h-screen'>
         <img 
             src={PokemonShadow}
             alt='Pokemon Shadow'

@@ -1,8 +1,7 @@
 import {
   createContext, 
   useState, 
-  useEffect, 
-  useContext,
+  useEffect,
   type JSX, 
 } from 'react';
 
@@ -11,6 +10,18 @@ import type { ErrorType, PokeNamesDataType } from '../utils/types';
 import ErrorBlock from '../components/ErrorBlock';
 
 const PokeNamesContext = createContext({});
+
+// Creating a promise outside the component to avoid the re-rendering and multiple execution of the api calls
+// Like rendering happen after the search is mounted
+// const pokemonPromise = (async (): Promise<PokeNamesDataType> => {
+//   const pokemonNames: PokeNamesDataType | ErrorType = await getAllPokemonNames();
+
+//   if('message' in pokemonNames) {
+//     throw new Error(pokemonNames.message);
+//   }
+
+//   return pokemonNames;
+// })()
 
 const PokeNamesContextProvider = ({ children }: { children: JSX.Element[] }) => {
   const [pokemonNamesData, setPokemonNamesData] = useState<Partial<PokeNamesDataType>>({});
@@ -42,4 +53,4 @@ const PokeNamesContextProvider = ({ children }: { children: JSX.Element[] }) => 
 
 export default PokeNamesContextProvider;
 
-export const usePokeNamesContext = () => useContext(PokeNamesContext);
+export { PokeNamesContext };

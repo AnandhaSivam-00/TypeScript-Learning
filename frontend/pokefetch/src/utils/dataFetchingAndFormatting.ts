@@ -1,9 +1,11 @@
+'use server'
+
 import axios from 'axios'
 
-import type { 
+import type {
   ErrorType,
-  PokeNamesDataType, 
-  PokemonDataType, 
+  PokeNamesDataType,
+  PokemonDataType,
   SpeciesDataType,
   PokemonDetailsType,
   PokemonStatsType,
@@ -34,7 +36,7 @@ export const getAllPokemonNames = async (): Promise<PokeNamesDataType | ErrorTyp
     return data;
   }
   catch(error) {
-    if(axios.isAxiosError(error)) { 
+    if(axios.isAxiosError(error)) {
       return responseErrorData(error.response?.data.error, error.response?.statusText!);
     }
     else if(error instanceof Error) {
@@ -51,7 +53,7 @@ export const getPokemonDetails = async (name: string): Promise<PokemonDetailsTyp
     const pokemonData: PokemonDataType | unknown = await getPokemonData(name);
 
     // @ts-ignore
-    const speciesData: SpeciesDataType | unknown = pokemonData.name === pokemonData.species ? 
+    const speciesData: SpeciesDataType | unknown = pokemonData.name === pokemonData.species ?
       await getPokemonSpeciesData(name) : // @ts-ignore
       await getPokemonSpeciesData(pokemonData.species);
 
@@ -144,4 +146,6 @@ export const getPokemonSpeciesData = async (name: string): Promise<SpeciesDataTy
   catch(error) {
     throw error;
   }
+
+  return speciesData;
 }

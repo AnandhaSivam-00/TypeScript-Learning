@@ -1,3 +1,5 @@
+'use server'
+
 import { type BackdropColorsType, type PokeTypesColorType } from "./types"
 
 export const backdropColors: Record<BackdropColorsType, string> = {

@@ -1,4 +1,4 @@
-import {useEffect, useState, type JSX} from 'react';
+import {useEffect, useState, startTransition, type JSX} from 'react';
 
 import { changeFirstLetterToUpperCase } from '../../utils/helperFunctions';
 
@@ -29,12 +29,14 @@ const ResultPill = ({
       .slice(0, 11)
       .map((pokemon) => changeFirstLetterToUpperCase(pokemon.name));
 
-    setFilteredPokemonNames(filteredNames);
-  }, [searchQueryString])
+      startTransition(() => {
+        setFilteredPokemonNames(filteredNames);
+      })
+  }, [searchQueryString, pokemonNames])
   
   return (
     <div 
-      className='w-full h-auto flex flex-row justify-start items-center flex-wrap border-1 border-gray-5 my-1 p-1 rounded-sm'
+      className='w-full h-auto flex flex-row justify-start items-center flex-wrap border border-gray-5 my-1 p-1 rounded-sm'
     >
       {filteredPokemonNames.length === 0 ? (
         <span className='text-gray-4/70 text-[0.7rem]'>No results found...</span>
@@ -47,7 +49,7 @@ const ResultPill = ({
                 <button
                   key={index}
                   type="button"
-                  className="w-auto h-auto inline bg-background hover:bg-black border-1 hover:border-black border-gray-5 px-2 -py-1! text-gray-4 rounded-sm text-[0.4rem] sm:text-[0.55rem] md:text-[0.65rem] tracking-widest m-0.5 cursor-pointer shadow-md transition-discrete duration-300 ease-in-out"
+                  className="w-auto h-auto inline bg-background hover:bg-black border hover:border-black border-gray-5 px-2 -py-1! text-gray-4 rounded-sm text-[0.4rem] sm:text-[0.55rem] md:text-[0.65rem] tracking-widest m-0.5 cursor-pointer shadow-md transition-discrete duration-300 ease-in-out"
                   onClick={() => {
                     setSearchQueryString(name);
                     setShowResultPill(false);

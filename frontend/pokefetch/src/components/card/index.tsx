@@ -1,4 +1,6 @@
-import {useEffect, useState, lazy, Suspense, type JSX} from 'react'
+'use client'
+
+import {useEffect, useState, lazy, Suspense, useTransition, type JSX, Activity} from 'react'
 import { useSearchParams } from 'react-router-dom';
 
 const RoundedPill = lazy(() => import('./RoundedPill'));
@@ -19,45 +21,40 @@ import {
 } from '../../utils/types';
 
 const OutputSection = (): JSX.Element => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [pokemonDetails, setPokemonDetails] = useState<PokemonDetailsType | null>(null);
+
+  const [isPending, startTransition] = useTransition();
 
   const [searchParams] = useSearchParams();
   const pokemonName = searchParams.get('name');
 
   useEffect(() => {
+    setErrorMessage(null);
+    setPokemonDetails(null);
+    
     if(!pokemonName) {
-      setIsLoading(false);
-      setErrorMessage(null);
-      setPokemonDetails(null);
       return;
     }
 
-    setIsLoading(true);
-    setErrorMessage(null);
-    setPokemonDetails(null);
-
-    (async () => {
+    startTransition(async () => {
       const result: PokemonDetailsType | ErrorType = await getPokemonDetails(pokemonName);
 
       if('message' in result) {
         setErrorMessage(result.message);
-        setIsLoading(false);
         return;
       }
 
       setPokemonDetails(result);
-      setIsLoading(false);
-    })();
+    })
 
   }, [pokemonName]);
 
   return (
-    <section className='w-full h-auto px-2'>
-      {isLoading && (
+    <section className='w-full min-h-screen px-2'>
+      <Activity mode={isPending ? 'visible' : 'hidden'}>
         <LoadingState />
-      )}
+      </Activity>
 
       {errorMessage && (
         <div className='w-full h-auto flex justify-center items-center px-2'>
@@ -67,7 +64,7 @@ const OutputSection = (): JSX.Element => {
 
       {pokemonDetails && (
         <Suspense fallback={<LoadingState />}>
-          <div className='mx-auto w-full lg:w-[55rem] xl:w-[68rem] h-5xl grid grid-cols-12 border-1 border-gray-5 rounded-md p-2 md:p-4 shadow-xl mb-5'>
+          <div className='mx-auto w-full lg:w-[55rem] xl:w-[68rem] h-5xl grid grid-cols-12 border border-gray-5 rounded-md p-2 md:p-4 shadow-xl mb-5'>
             <div className='col-span-12 md:col-span-5 flex flex-col justify-start items-start me-0 md:me-5 lg:me-0'>
                 <div className='flex flex-col justify-center items-start gap-y-1'>
                     <h1 className='font-semibold! text-wrap'>{changeFirstLetterToUpperCase(removeHypens(pokemonDetails?.name))} <sup className='align-super text-xs text-gray-2'>#{pokemonDetails?.order}</sup></h1>
