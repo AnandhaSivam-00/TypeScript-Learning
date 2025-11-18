@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Typesript learning - sample backend project",
+  "license": "ISC",
+  "author": "Little Thinker",
+  "type": "module",
+  "main": "server.ts",
+  "scripts": {
+    "build": "npx tsx && node dist/server.js",
+    "server": "node src/server.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node24": "^24.0.3",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5",
+    "typescript": "^5.9.3"
+  }
+}
