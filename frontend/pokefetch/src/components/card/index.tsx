@@ -30,14 +30,12 @@ const OutputSection = (): JSX.Element => {
   const pokemonName = searchParams.get('name');
 
   useEffect(() => {
-    if(!pokemonName) {
-      setErrorMessage(null);
-      setPokemonDetails(null);
-      return;
-    }
-
     setErrorMessage(null);
     setPokemonDetails(null);
+    
+    if(!pokemonName) {
+      return;
+    }
 
     startTransition(async () => {
       const result: PokemonDetailsType | ErrorType = await getPokemonDetails(pokemonName);
